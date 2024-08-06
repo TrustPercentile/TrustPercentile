@@ -11,6 +11,11 @@ token = ""
 
 if __name__ == "__main__":
 
+    os.makedirs("../data", exist_ok=True)
+    os.makedirs("../output", exist_ok=True)
+    os.makedirs("../images", exist_ok=True)
+    os.makedirs("../docs", exist_ok=True)
+
     # 01
     # scrape date for later calculate
     scrape(owner, repo, token)
