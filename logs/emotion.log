@@ -1,0 +1,46 @@
+GOVERNANCE.md not found (404). Trying another file...
+governance.md not found (404). Trying another file...
+Failed to retrieve code_of_conduct. Status code: 404
+GET https://github.com/emotion-js/emotion/issues
+GET https://github.com/emotion-js/emotion/pulls
+An error occurred : HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/jaredwray/cacheable_legacy/releases?page=1&per_page=100 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)'))). Skipping this issue.
+An error occurred : HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/cssnano/cssnano/releases?page=1&per_page=100 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)'))). Skipping this issue.
+An error occurred : HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/vercel/styled-jsx/releases?page=3&per_page=100 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)'))). Skipping this issue.
+GOVERNANCE.md not found (404). Trying another file...
+governance.md not found (404). Trying another file...
+Failed to retrieve code_of_conduct. Status code: 404
+GET https://github.com/emotion-js/emotion/issues
+GET https://github.com/emotion-js/emotion/pulls
+An error occurred while fetching dependencies: HTTPSConnectionPool(host='github.com', port=443): Max retries exceeded with url: /emotion-js/emotion/blob/main/yarn.lock (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)'))). Skipping this issue.
+An error occurred while fetching dependencies: HTTPSConnectionPool(host='github.com', port=443): Max retries exceeded with url: /emotion-js/emotion/blob/main/yarn.lock (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)'))). Skipping this issue.
+An error occurred : HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/babel/babel/releases?page=3&per_page=100 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)'))). Skipping this issue.
+An error occurred : HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/babel/babel/releases?page=4&per_page=100 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)'))). Skipping this issue.
+An error occurred : HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/babel/babel/releases?page=2&per_page=100 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)'))). Skipping this issue.
+An error occurred : HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/babel/babel/releases?page=2&per_page=100 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)'))). Skipping this issue.
+An error occurred : HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/babel/babel/releases?page=3&per_page=100 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)'))). Skipping this issue.
+An error occurred : HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/vercel/next.js/releases?page=23&per_page=100 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)'))). Skipping this issue.
+An error occurred : HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/jaredwray/cacheable_legacy/releases?page=1&per_page=100 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)'))). Skipping this issue.
+Request failed: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/emotion-js/emotion/commits/ca3ad1c1dcabf78a95b55cc2dc94cad1998a3196 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)'))). Retrying in 5 seconds...
+scrape executed in 6040.40 seconds
+Memory used: -40.43 MB
+CPU usage: -29.20%
+IO read: 62494359552 bytes
+Successfully appended metrics data to summary file and saved as ../output/merged_raw_metrics.csv
+get_raw_metrics executed in 4.40 seconds
+Memory used: 21.71 MB
+CPU usage: -9.30%
+IO read: 151060480 bytes
+Successfully generated detailed markdown file and saved as ../docs/Metrics_detail_template_Component_(Integrity)_emotion.md
+get_detailed_markdown_file executed in 2.22 seconds
+Memory used: 0.11 MB
+CPU usage: 17.40%
+IO read: 2920448 bytes
+Normalized data has been successfully written to ../output/normalized_metrics.csv
+Normalized data for Readme has been successfully written to ../output/readme_normalized_metrics.csv
+Ranked data has been successfully written to ../output/ranked_metrics.csv
+Ranked data for Readme has been successfully written to ../output/readme_ranked_metrics.csv
+Readme.md has been successfully written to ../docs/README_emotion.md
+get_trustPercentile_readme_file executed in 4.17 seconds
+Memory used: 63.01 MB
+CPU usage: 3.80%
+IO read: 51392512 bytes

@@ -1,0 +1,31 @@
+Request failed: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/palantir/tslint/commits/82bd9b22d45f3b66141acc347f7ff92e762abc47 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)'))). Retrying in 5 seconds...
+Request failed: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/palantir/tslint/commits/6234ca39863875a9dbef25dbb933b8a2f341fac0 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)'))). Retrying in 5 seconds...
+Request failed: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/palantir/tslint/commits/53840d2830c23376ad4379bf3dbc68b17429416a (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)'))). Retrying in 5 seconds...
+Failed to retrieve governance. Status code: 404
+Failed to retrieve contributing. Status code: 404
+Failed to retrieve code_of_conduct. Status code: 404
+GET https://github.com/palantir/tslint/issues
+GET https://github.com/palantir/tslint/pulls
+scrape executed in 2721.36 seconds
+Memory used: 43.92 MB
+CPU usage: 15.50%
+IO read: 39503147008 bytes
+Successfully appended metrics data to summary file and saved as ../output/merged_raw_metrics.csv
+get_raw_metrics executed in 4.23 seconds
+Memory used: 4.09 MB
+CPU usage: 16.60%
+IO read: 242827264 bytes
+Successfully generated detailed markdown file and saved as ../docs/Metrics_detail_template_Component_(Integrity)_tslint.md
+get_detailed_markdown_file executed in 2.21 seconds
+Memory used: 0.00 MB
+CPU usage: -12.20%
+IO read: 6533120 bytes
+Normalized data has been successfully written to ../output/normalized_metrics.csv
+Normalized data for Readme has been successfully written to ../output/readme_normalized_metrics.csv
+Ranked data has been successfully written to ../output/ranked_metrics.csv
+Ranked data for Readme has been successfully written to ../output/readme_ranked_metrics.csv
+Readme.md has been successfully written to ../docs/README_tslint.md
+get_trustPercentile_readme_file executed in 3.76 seconds
+Memory used: 39.61 MB
+CPU usage: 4.90%
+IO read: 83714048 bytes

@@ -123,10 +123,10 @@ def calculate(owner, repo, metrics_path, repos_data_path):
                     commit_count += 1
                     comment_count += commit['commit']['comment_count']
                     contributors.add(commit['commit']['author']['name'])
-        metrics.at[index, 'commits_pushed_7m'] = f"{commit_count:d}" if commit_count > 0 else "N/A"
-        metrics.at[index, 'commits_7m'] = f"{commit_count:d}" if commit_count > 0 else "N/A"
-        metrics.at[index, 'comments_per_commit_7m'] = f"{(comment_count / commit_count):.1f}" if commit_count > 0 else "N/A"
-        metrics.at[index, 'distinct_contributors_7m'] = f"{len(contributors):d}" if len(contributors) > 0 else "N/A"
+        metrics.at[index, 'commits_pushed_7m'] = f"{commit_count:d}" if commit_count > 0 else ""
+        metrics.at[index, 'commits_7m'] = f"{commit_count:d}" if commit_count > 0 else ""
+        metrics.at[index, 'comments_per_commit_7m'] = f"{(comment_count / commit_count):.1f}" if commit_count > 0 else ""
+        metrics.at[index, 'distinct_contributors_7m'] = f"{len(contributors):d}" if len(contributors) > 0 else ""
 
     metrics.to_csv(metrics_path, index=False)
 
@@ -175,9 +175,9 @@ def calculate(owner, repo, metrics_path, repos_data_path):
                                 comment_length += len(comment['body'])
                                 comment_count += 1
             metrics.at[index, 'issue_reporters_7m'] = f"{len(participants):d}"
-            metrics.at[index, 'time_to_close_issues_7m'] = f"{(total_time_to_close / closed_issues_count / (24 * 3600)):.1f}" if closed_issues_count > 0 else "N/A"
-            metrics.at[index, 'time_first_comment_issues_7m'] = f"{(total_time_to_comment / commented_issues_count / (24 * 3600)):.1f}" if commented_issues_count > 0 else "N/A"
-            metrics.at[index, 'average_comment_length_7m'] = f"{(comment_length / comment_count) :.1f}" if comment_count > 0 else "N/A"
+            metrics.at[index, 'time_to_close_issues_7m'] = f"{(total_time_to_close / closed_issues_count / (24 * 3600)):.1f}" if closed_issues_count > 0 else ""
+            metrics.at[index, 'time_first_comment_issues_7m'] = f"{(total_time_to_comment / commented_issues_count / (24 * 3600)):.1f}" if commented_issues_count > 0 else ""
+            metrics.at[index, 'average_comment_length_7m'] = f"{(comment_length / comment_count) :.1f}" if comment_count > 0 else ""
 
     metrics.to_csv(metrics_path, index=False)
 
@@ -223,8 +223,8 @@ def calculate(owner, repo, metrics_path, repos_data_path):
                             commented_pulls_count += 1
             metrics.at[index, 'distinct_people_closed_PRs_7m'] = f"{len(participants):d}"
             metrics.at[index, 'submitted_PRs_7m'] = f"{pulls_count:d}"
-            metrics.at[index, 'time_to_close_PRs_7m'] = f"{(total_time_to_close / closed_pulls_count / (24 * 3600)):.1f}" if closed_pulls_count > 0 else "N/A"
-            metrics.at[index, 'time_first_comment_close_PRs_7m'] = f"{(total_time_to_comment / commented_pulls_count / (24 * 3600)):.1f}" if commented_pulls_count > 0 else "N/A"
+            metrics.at[index, 'time_to_close_PRs_7m'] = f"{(total_time_to_close / closed_pulls_count / (24 * 3600)):.1f}" if closed_pulls_count > 0 else ""
+            metrics.at[index, 'time_first_comment_close_PRs_7m'] = f"{(total_time_to_comment / commented_pulls_count / (24 * 3600)):.1f}" if commented_pulls_count > 0 else ""
 
     metrics.to_csv(metrics_path, index=False)
 
@@ -252,7 +252,7 @@ def calculate(owner, repo, metrics_path, repos_data_path):
                 issues_rate = json.load(f)
             open_issues = issues_rate.get('open_issues', 0)
             closed_issues = issues_rate.get('closed_issues', 0)
-            metrics.at[index, 'issues_closed_percentage'] = f"{(closed_issues / (open_issues + closed_issues)):.1f}" if open_issues + closed_issues > 0 else "N/A"
+            metrics.at[index, 'issues_closed_percentage'] = f"{(closed_issues / (open_issues + closed_issues)):.1f}" if open_issues + closed_issues > 0 else ""
         open_pulls = 0
         closed_pulls = 0
         pulls_rate_path = f"{repos_data_path}/{owner}_{repo}/pulls_rate.json"
@@ -261,7 +261,7 @@ def calculate(owner, repo, metrics_path, repos_data_path):
                 pulls_rate = json.load(f)
             open_pulls = pulls_rate.get('open_pulls', 0)
             closed_pulls = pulls_rate.get('closed_pulls', 0)
-            metrics.at[index, 'PRs_closed_percentage'] = f"{(closed_pulls / (open_pulls + closed_pulls)):.1f}" if (open_pulls + closed_pulls) > 0 else "N/A"
+            metrics.at[index, 'PRs_closed_percentage'] = f"{(closed_pulls / (open_pulls + closed_pulls)):.1f}" if (open_pulls + closed_pulls) > 0 else ""
 
     metrics.to_csv(metrics_path, index=False)
 
@@ -273,7 +273,7 @@ def calculate(owner, repo, metrics_path, repos_data_path):
         if os.path.exists(profile_path):
             with open(profile_path, 'r') as f:
                 profile = json.load(f)
-            metrics.at[index, 'community_health_percentage'] = f"{profile.get('health_percentage'):d}" if profile else "N/A"
+            metrics.at[index, 'community_health_percentage'] = f"{profile.get('health_percentage'):d}" if profile else ""
 
     metrics.to_csv(metrics_path, index=False)
 
@@ -292,8 +292,8 @@ def calculate(owner, repo, metrics_path, repos_data_path):
                     created_at = datetime.strptime(repo['created_at'], '%Y-%m-%dT%H:%M:%SZ')
                     if created_at < today:
                         age += (today - created_at).total_seconds()
-        metrics.at[index, 'projects_owned_per_maintainer'] = f"{len(maintainer):d}" if maintainer else "N/A"
-        metrics.at[index, 'median_age_other_projects'] = f"{age / len(maintainer) / (3600 * 24):.1f}" if maintainer else "N/A"
+        metrics.at[index, 'projects_owned_per_maintainer'] = f"{len(maintainer):d}" if maintainer else ""
+        metrics.at[index, 'median_age_other_projects'] = f"{age / len(maintainer) / (3600 * 24):.1f}" if maintainer else ""
 
     # check run
     for index, row in metrics.iterrows():
@@ -304,8 +304,8 @@ def calculate(owner, repo, metrics_path, repos_data_path):
             with open(workflow_path, 'r') as f:
                 workflow = json.load(f)
         # print(workflow['total_count'])
-        metrics.at[index, 'check_runs'] = f"{workflow['total_count']:d}" if workflow else "N/A"
-        metrics.at[index, 'workflow_runs'] =  f"{workflow['total_count']:d}" if workflow else "N/A"
+        metrics.at[index, 'check_runs'] = f"{workflow['total_count']:d}" if workflow else ""
+        metrics.at[index, 'workflow_runs'] =  f"{workflow['total_count']:d}" if workflow else ""
 
     metrics.to_csv(metrics_path, index=False)
 
@@ -317,7 +317,7 @@ def calculate(owner, repo, metrics_path, repos_data_path):
         if os.path.exists(releases_path):
             with open(releases_path, 'r') as f:
                 releases = json.load(f)
-        metrics.at[index, 'number_of_versions'] = f"{len(releases):d}" if releases else "N/A"
+            metrics.at[index, 'number_of_versions'] = f"{len(releases):d}" if releases else ""
 
     metrics.to_csv(metrics_path, index=False)
 
@@ -354,8 +354,8 @@ def calculate(owner, repo, metrics_path, repos_data_path):
                 if len(contributors) > 1:
                     files_with_more_than_1_contributors += 1
             # num_files = len(file_contributors)
-            metrics.at[index, 'contributors_per_code_file'] = f"{total_contributors / total_files:.1f}" if total_files > 0 else "N/A"
-            metrics.at[index, 'files_with_2plus_contributors'] = f"{files_with_more_than_1_contributors}" if files_with_more_than_1_contributors > 0 else "N/A"
+            metrics.at[index, 'contributors_per_code_file'] = f"{total_contributors / total_files:.1f}" if total_files > 0 else ""
+            metrics.at[index, 'files_with_2plus_contributors'] = f"{files_with_more_than_1_contributors}" if files_with_more_than_1_contributors > 0 else ""
 
     metrics.to_csv(metrics_path, index=False)
 
@@ -451,7 +451,7 @@ def calculate(owner, repo, metrics_path, repos_data_path):
             for check in scorecard['checks']:
                 if check['name'] == "Vulnerabilities":
                     value = check['reason'].split()[0]
-                    metrics.at[index, 'dependencies_with_vulnerabilities'] = value if value.isdigit() else "N/A"
+                    metrics.at[index, 'dependencies_with_vulnerabilities'] = value if value.isdigit() else ""
 
     metrics.to_csv(metrics_path, index=False)
 

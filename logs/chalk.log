@@ -1,0 +1,26 @@
+Failed to retrieve governance. Status code: 404
+GET https://github.com/chalk/chalk/issues
+GET https://github.com/chalk/chalk/pulls
+scrape executed in 370.73 seconds
+Memory used: 13.28 MB
+CPU usage: 42.50%
+IO read: 7165120512 bytes
+Successfully appended metrics data to summary file and saved as ../output/merged_raw_metrics.csv
+get_raw_metrics executed in 2.70 seconds
+Memory used: 4.46 MB
+CPU usage: 0.00%
+IO read: 110161920 bytes
+Successfully generated detailed markdown file and saved as ../docs/Metrics_detail_template_Component_(Integrity)_chalk.md
+get_detailed_markdown_file executed in 2.21 seconds
+Memory used: 0.00 MB
+CPU usage: -2.00%
+IO read: 31997952 bytes
+Normalized data has been successfully written to ../output/normalized_metrics.csv
+Normalized data for Readme has been successfully written to ../output/readme_normalized_metrics.csv
+Ranked data has been successfully written to ../output/ranked_metrics.csv
+Ranked data for Readme has been successfully written to ../output/readme_ranked_metrics.csv
+Readme.md has been successfully written to ../docs/README_chalk.md
+get_trustPercentile_readme_file executed in 4.12 seconds
+Memory used: 35.86 MB
+CPU usage: -40.90%
+IO read: 135307264 bytes

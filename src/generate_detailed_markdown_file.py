@@ -6,6 +6,9 @@ def read_metrics_from_csv(file_path):
     with open(file_path, mode='r', newline='') as file:
         reader = csv.DictReader(file)
         for row in reader:
+            for key, value in row.items():
+                if value == '':
+                    row[key] = '0'
             metrics = row
     return metrics
 
@@ -63,7 +66,7 @@ def generate_markdown(metrics):
 
 *Average of normalized (Normalized for percentage, Inverse normalized for time) below metrics*
 
-- Percentage of [issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues) closed : {metrics['issues_closed_percentage']}%
+- Percentage of [issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues) closed : {float(metrics['issues_closed_percentage']) * 100}%
 - Average time to close [issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues) (7 months) : {metrics['time_to_close_issues_7m']} days
 - Average time until first [maintainers](https://opensource.guide/how-to-contribute/#anatomy-of-an-open-source-project) comment on [issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues) (7 months) : {metrics['time_first_comment_issues_7m']} days
 
@@ -71,7 +74,7 @@ def generate_markdown(metrics):
 
 *Average of normalized (Normalized for percentage and number, Inverse normalized for time and days) below metrics*
 
-- Percentage of [PR](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)s closed : {metrics['PRs_closed_percentage']}%
+- Percentage of [PR](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)s closed : {float(metrics['PRs_closed_percentage']) * 100}%
 - Time to close [PR](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)s (7 months) : {metrics['time_to_close_PRs_7m']} days
 - Time until first [maintainer](https://opensource.guide/how-to-contribute/#anatomy-of-an-open-source-project) comment or close on [PR](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)s (7 months) : {metrics['time_first_comment_close_PRs_7m']} days
 - Number of [commits](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/about-commits) closed (7 months) : {metrics['commits_7m']} days

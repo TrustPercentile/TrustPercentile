@@ -1,8 +1,9 @@
 import pandas as pd
+import numpy as np
 
-from src.image import generate_image
-from src.normalize import normalize_metrics, prepare_normalized_metrics_for_readme
-from src.ranking import rank_metrics, prepare_ranked_metrics_for_readme
+from image import generate_image
+from normalize import normalize_metrics, prepare_normalized_metrics_for_readme
+from ranking import rank_metrics, prepare_ranked_metrics_for_readme
 
 
 def write_markdown_to_file(file_path, markdown_content):
@@ -10,19 +11,57 @@ def write_markdown_to_file(file_path, markdown_content):
         file.write(markdown_content)
 
 
-def generate_readme(owner, repo, input_file, readme_file):
-    metrics = pd.read_csv(input_file)
-    row = metrics[(metrics['owner'] == owner) & (metrics['repo'] == repo)].iloc[0]
+def get_grade(owner, repo, input_score_file):
+    df = pd.read_csv(input_score_file)
+    df.replace('', np.nan, inplace=True)
+    descending_columns = ['time_to_close_issues_7m', 'time_first_comment_issues_7m', 'time_to_close_PRs_7m',
+                          'time_first_comment_close_PRs_7m', 'dependencies_version_staleness',
+                          'dependencies_with_vulnerabilities']
+    for col in descending_columns:
+        if col in df.columns:
+            df[col] = 10 - df[col]
 
-    # <center><img src="../images/grade_f.svg" width="100px" height="100px"></center>
-    #
-    # This grade is based on the percentile rankings of the 3 trust component scores below, which are compared with the top 1000 most-downloaded npm libraries.
+    for col in descending_columns:
+        mean = df[col].mean()
+        std_dev = df[col].std()
+        df[f'{col}_Z-Score'] = (df[col] - mean) / std_dev
+    df['Combined_Z-Score'] = df[[f'{col}_Z-Score' for col in descending_columns]].mean(axis=1)
+
+    def assign_final_grade(z):
+        if z > 1.5:
+            return 'a'
+        elif z > 0.5:
+            return 'b'
+        elif z > 0.0:
+            return 'c'
+        elif z > -0.5:
+            return 'd'
+        else:
+            return 'f'
+
+    df['Final_Grade'] = df['Combined_Z-Score'].apply(assign_final_grade)
+
+    return df[(df['owner'] == owner) & (df['repo'] == repo)]['Final_Grade'].iloc[0]
+
+
+def generate_readme(owner, repo, input_ranking_file, input_score_file, readme_file):
+
+    df = pd.read_csv(input_score_file)
+
+    grade = get_grade(owner, repo, input_score_file)
+
+    metrics = pd.read_csv(input_ranking_file)
+    row = metrics[(metrics['owner'] == owner) & (metrics['repo'] == repo)].iloc[0]
 
     markdown_content = f"""
 # {repo}’s Trust Percentiles
 
 Note: This is a forked repo. The original repo is [here](https://github.com/{owner}/{repo}).
 *Data as of January 31, 2024*
+
+<center><img src="../images/grade_{grade}.svg" width="100px" height="100px"></center>
+
+This grade is based on the percentile rankings of the 3 trust component scores below, which are compared with the top 1000 most-downloaded npm libraries.
 
 <details>
 <summary><span style="font-size: 20px;"><strong>Community Activity and Integrity -- </strong>Beats <strong><span style="color: blue;">{float(row['Community Activity and Integrity'])}%</span></strong> Other Repos</summary>
@@ -143,4 +182,4 @@ def get_trustPercentile_readme_file(owner, repo):
     generate_image(owner, repo, '../output/readme_normalized_metrics.csv', )
     rank_metrics('../output/normalized_metrics.csv', '../output/ranked_metrics.csv')
     prepare_ranked_metrics_for_readme('../output/ranked_metrics.csv', '../output/readme_ranked_metrics.csv')
-    generate_readme(owner, repo,'../output/readme_ranked_metrics.csv', f'../docs/README_{repo}.md' )
+    generate_readme(owner, repo,'../output/readme_ranked_metrics.csv', '../output/normalized_metrics.csv', f'../docs/README_{repo}.md' )

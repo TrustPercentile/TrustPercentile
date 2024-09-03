@@ -3,7 +3,7 @@ import os
 
 from api.code_of_conduct import get_code_of_conduct
 from api.comments import get_comments
-from api.commits import get_recent_commits, get_all_commits, get_commit_by_sha
+from api.commits import get_all_commits, get_commit_by_sha
 from api.contributing import get_contributing
 from api.dependencies import get_dependencies_count, get_all_dependencies, get_outdated_dependencies_count
 from api.dependents import get_dependents_repositories_count
@@ -21,7 +21,7 @@ from api.workflow import get_workflow
 
 # dir_path = "/Users/zhangyujin/PycharmProjects/oss-percentile"
 
-dir_path = ""
+dir_path = ".."
 
 def scrape(owner, repo, token):
 
@@ -29,47 +29,6 @@ def scrape(owner, repo, token):
         os.mkdir(f"{dir_path}/data/{owner}_{repo}")
         os.mkdir(f"{dir_path}/data/{owner}_{repo}/commits")
         os.mkdir(f"{dir_path}/data/{owner}_{repo}/comments")
-
-    # Community Activity and Integrity
-
-    # repo_info: stars_and_watchers, forks
-    repo_data = get_repo_info(owner, repo, token)
-    if repo_data:
-        with open(f"{dir_path}/data/{owner}_{repo}/repo.json", "w") as f:
-            json.dump(repo_data, f, indent=4)
-
-    # issues and comments: issues_reporters_count,  issue_closed_rate, issue_time_to_close
-    issues_data = get_recent_issues(owner, repo, token)
-    if issues_data:
-        with open(f"{dir_path}/data/{owner}_{repo}/issues.json", "w") as f:
-            json.dump(issues_data, f, indent=4)
-        for issue in issues_data:
-            comment_data = get_comments(owner, repo, token, issue['comments_url'])
-            if comment_data:
-                with open(f"{dir_path}/data/{owner}_{repo}/comments/{issue['number']}.json", "w") as f:
-                    json.dump(comment_data, f, indent=4)
-
-    # pulls and comments: submitted_PRs
-    pulls_data = get_recent_pull_requests(owner, repo, token)
-    if pulls_data:
-        with open(f"{dir_path}/data/{owner}_{repo}/pulls.json", "w") as f:
-            json.dump(pulls_data, f, indent=4)
-        for pull in pulls_data:
-            comment_data = get_comments(owner, repo, token, pull['comments_url'])
-            if comment_data:
-                with open(f"{dir_path}/data/{owner}_{repo}/comments/{pull['number']}.json", "w") as f:
-                    json.dump(comment_data, f, indent=4)
-
-    # commits:  submitted_commmits, contributors_count,
-    commits_data = get_all_commits(owner, repo, token)
-    if commits_data:
-        with open(f"{dir_path}/data/{owner}_{repo}/commits.json", "w") as f:
-            json.dump(commits_data, f, indent=4)
-        for commit in commits_data:
-            commit_data = get_commit_by_sha(owner, repo, token, commit["sha"])
-            if commit_data:
-                with open(f"{dir_path}/data/{owner}_{repo}/commits/{commit['sha']}.json", "w") as f:
-                    json.dump(commit_data, f, indent=4)
 
     # Maintenance and Goodwill
 
@@ -165,6 +124,47 @@ def scrape(owner, repo, token):
     if release_data:
         with open(f"{dir_path}/data/{owner}_{repo}/releases.json", "w") as f:
             json.dump(release_data, f, indent=4)
+
+    # Community Activity and Integrity
+
+    # repo_info: stars_and_watchers, forks
+    repo_data = get_repo_info(owner, repo, token)
+    if repo_data:
+        with open(f"{dir_path}/data/{owner}_{repo}/repo.json", "w") as f:
+            json.dump(repo_data, f, indent=4)
+
+    # issues and comments: issues_reporters_count,  issue_closed_rate, issue_time_to_close
+    issues_data = get_recent_issues(owner, repo, token)
+    if issues_data:
+        with open(f"{dir_path}/data/{owner}_{repo}/issues.json", "w") as f:
+            json.dump(issues_data, f, indent=4)
+        for issue in issues_data:
+            comment_data = get_comments(owner, repo, token, issue['comments_url'])
+            if comment_data:
+                with open(f"{dir_path}/data/{owner}_{repo}/comments/{issue['number']}.json", "w") as f:
+                    json.dump(comment_data, f, indent=4)
+
+    # pulls and comments: submitted_PRs
+    pulls_data = get_recent_pull_requests(owner, repo, token)
+    if pulls_data:
+        with open(f"{dir_path}/data/{owner}_{repo}/pulls.json", "w") as f:
+            json.dump(pulls_data, f, indent=4)
+        for pull in pulls_data:
+            comment_data = get_comments(owner, repo, token, pull['comments_url'])
+            if comment_data:
+                with open(f"{dir_path}/data/{owner}_{repo}/comments/{pull['number']}.json", "w") as f:
+                    json.dump(comment_data, f, indent=4)
+
+    # commits:  submitted_commmits, contributors_count,
+    commits_data = get_all_commits(owner, repo, token)
+    if commits_data:
+        with open(f"{dir_path}/data/{owner}_{repo}/commits.json", "w") as f:
+            json.dump(commits_data, f, indent=4)
+        for commit in commits_data:
+            commit_data = get_commit_by_sha(owner, repo, token, commit["sha"])
+            if commit_data:
+                with open(f"{dir_path}/data/{owner}_{repo}/commits/{commit['sha']}.json", "w") as f:
+                    json.dump(commit_data, f, indent=4)
 
 
 # if __name__ == '__main__':

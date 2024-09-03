@@ -33,7 +33,7 @@ def normalize_metrics(input_file, output_file):
         # print(col_index, headers[col_index])
         column_data = [row[col_index] for row in original_data]
         if col_index > 1:  # except owner and repo
-            numeric_data_list = [float(x) for x in column_data if x != '']
+            numeric_data_list = [float(x) for x in column_data if x not in ('', 'N/A')]
             if numeric_data_list:
                 min_value = min(numeric_data_list)
                 max_value = max(numeric_data_list)

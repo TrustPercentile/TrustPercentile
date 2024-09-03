@@ -1,6 +1,5 @@
 import requests
 
-from api.branches import get_all_branches
 
 def get_all_contributors(owner, repo, token):
     headers = {'Authorization': f'token {token}'}

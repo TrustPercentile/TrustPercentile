@@ -1,12 +1,20 @@
 import csv
+import os
+import time
+import psutil
+from memory_profiler import memory_usage
+import pandas as pd
+import numpy as np
 
-from src.generate_detailed_markdown_file import get_detailed_markdown_file
-from src.generate_trustPercentile_readme_file import get_trustPercentile_readme_file
-from src.get_raw_metrics import get_raw_metrics
-from src.scrape import scrape
 
-owner = "chalk"
-repo = "chalk"
+from generate_detailed_markdown_file import get_detailed_markdown_file
+from generate_trustPercentile_readme_file import get_trustPercentile_readme_file
+from get_raw_metrics import get_raw_metrics
+from scrape import scrape
+
+
+owner = ""
+repo = ""
 token = ""
 
 if __name__ == "__main__":
@@ -33,5 +41,3 @@ if __name__ == "__main__":
     # 04
     # use metrics to generate README.md (TrustPercentile)
     get_trustPercentile_readme_file(owner, repo)
-
-

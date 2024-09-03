@@ -1,15 +1,21 @@
+import time
 import requests
 
 
 def get_commit_by_sha(owner, repo, token, commit_sha):
     commit_url = f"https://api.github.com/repos/{owner}/{repo}/commits/{commit_sha}"
     headers = {'Authorization': f'token {token}'}
-    commit_response = requests.get(commit_url, headers=headers)
-    if commit_response.status_code == 200:
-        return commit_response.json()
-    else:
-        print(f"Failed to retrieve commit {commit_sha}. Status code: {commit_response.status_code}")
-        return None
+    while True:
+        try:
+            commit_response = requests.get(commit_url, headers=headers)
+            if commit_response.status_code == 200:
+                return commit_response.json()
+            else:
+                print(f"Failed to retrieve commit. Status code: {commit_response.status_code}. Retrying in 5 seconds...")
+                time.sleep(5)
+        except requests.exceptions.RequestException as e:
+            print(f"Request failed: {e}. Retrying in {5} seconds...")
+            time.sleep(5)
 
 
 def get_all_commits(owner, repo, token):

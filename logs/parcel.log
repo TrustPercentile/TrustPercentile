@@ -1,0 +1,32 @@
+Request failed: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/parcel-bundler/parcel/commits/e07b5cac81438a8b1d06ade348fa8e73290769bf (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)'))). Retrying in 5 seconds...
+Request failed: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/parcel-bundler/parcel/commits/deceea361af54a4edb5ab0683d889b2cbef9d14f (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response'))). Retrying in 5 seconds...
+Request failed: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/parcel-bundler/parcel/commits/adde6fcf7dbf1b267e865f6180c6a455819e4c3e (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)'))). Retrying in 5 seconds...
+Request failed: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/parcel-bundler/parcel/commits/b55056cb626928f8507da4015f55699be6e08aed (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response'))). Retrying in 5 seconds...
+GOVERNANCE.md not found (404). Trying another file...
+governance.md not found (404). Trying another file...
+Failed to retrieve code_of_conduct. Status code: 404
+GET https://github.com/parcel-bundler/parcel/issues
+GET https://github.com/parcel-bundler/parcel/pulls
+scrape executed in 8725.24 seconds
+Memory used: 33.17 MB
+CPU usage: -6.40%
+IO read: 45367144448 bytes
+Successfully appended metrics data to summary file and saved as ../output/merged_raw_metrics.csv
+get_raw_metrics executed in 7.10 seconds
+Memory used: 8.02 MB
+CPU usage: 8.00%
+IO read: 767549440 bytes
+Successfully generated detailed markdown file and saved as ../docs/Metrics_detail_template_Component_(Integrity)_parcel.md
+get_detailed_markdown_file executed in 2.22 seconds
+Memory used: -0.02 MB
+CPU usage: -10.60%
+IO read: 66076672 bytes
+Normalized data has been successfully written to ../output/normalized_metrics.csv
+Normalized data for Readme has been successfully written to ../output/readme_normalized_metrics.csv
+Ranked data has been successfully written to ../output/ranked_metrics.csv
+Ranked data for Readme has been successfully written to ../output/readme_ranked_metrics.csv
+Readme.md has been successfully written to ../docs/README_parcel.md
+get_trustPercentile_readme_file executed in 4.27 seconds
+Memory used: 33.85 MB
+CPU usage: 1.00%
+IO read: 165982208 bytes

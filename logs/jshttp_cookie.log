@@ -1,0 +1,28 @@
+Failed to retrieve governance. Status code: 404
+Failed to retrieve contributing. Status code: 404
+Failed to retrieve code_of_conduct. Status code: 404
+GET https://github.com/jshttp/cookie/issues
+GET https://github.com/jshttp/cookie/pulls
+scrape executed in 324.66 seconds
+Memory used: 14.16 MB
+CPU usage: -25.00%
+IO read: 2755809280 bytes
+Successfully appended metrics data to summary file and saved as ../output/merged_raw_metrics.csv
+get_raw_metrics executed in 2.54 seconds
+Memory used: 5.25 MB
+CPU usage: -2.20%
+IO read: 8654848 bytes
+Successfully generated detailed markdown file and saved as ../docs/Metrics_detail_template_Component_(Integrity)_cookie.md
+get_detailed_markdown_file executed in 2.22 seconds
+Memory used: 0.00 MB
+CPU usage: -3.20%
+IO read: 0 bytes
+Normalized data has been successfully written to ../output/normalized_metrics.csv
+Normalized data for Readme has been successfully written to ../output/readme_normalized_metrics.csv
+Ranked data has been successfully written to ../output/ranked_metrics.csv
+Ranked data for Readme has been successfully written to ../output/readme_ranked_metrics.csv
+Readme.md has been successfully written to ../docs/README_cookie.md
+get_trustPercentile_readme_file executed in 3.68 seconds
+Memory used: 37.96 MB
+CPU usage: 4.90%
+IO read: 9551872 bytes
