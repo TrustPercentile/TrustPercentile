@@ -1,12 +1,17 @@
 import os
 
-import pandas as pd
+import matplotlib
 import numpy as np
+import pandas as pd
+
+# Use a non-GUI backend to avoid macOS thread crashes in background workers.
+matplotlib.use("Agg")
 from matplotlib import pyplot as plt
 
 def generate_histogram(file_path, column, value, owner, repo):
     # print(f"Generating histogram for {column}: {value}")
 
+    os.makedirs("../images", exist_ok=True)
     plt.rcParams["font.sans-serif"] = ["SimHei"]
     plt.figure(figsize=(10, 2.5))
     df = pd.read_csv(file_path, encoding='gbk')

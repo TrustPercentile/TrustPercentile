@@ -54,13 +54,13 @@ def generate_readme(owner, repo, input_ranking_file, input_score_file, readme_fi
     row = metrics[(metrics['owner'] == owner) & (metrics['repo'] == repo)].iloc[0]
 
     markdown_content = f"""
-# {repo}’s Social Trust Percentiles
+# {repo}’s SocialTrust Percentiles
 
 Note: This is a forked repo. The original repo is [here](https://github.com/{owner}/{repo}).
 The percentile metrics are based on public social signals through GitHub, so lower ratings may be common for smaller or newer repos.
 *Data as of January 31, 2024*
 
-<center><img src="../images/grade_{grade}.svg" width="100px" height="100px"></center>
+<center><img src="../assets/grades/grade_{grade}.svg" width="100px" height="100px"></center>
 
 This grade is based on the percentile rankings of the 3 trust component scores below, which are compared with the top 1000 most-downloaded npm libraries.
 
@@ -177,7 +177,7 @@ Security and scalability of the project’s code. Contributors can increase thes
 
 
 
-def get_trustPercentile_readme_file(owner, repo):
+def get_social_trust_readme_file(owner, repo):
     normalize_metrics('../output/merged_raw_metrics.csv', '../output/normalized_metrics.csv')
     prepare_normalized_metrics_for_readme('../output/normalized_metrics.csv', '../output/readme_normalized_metrics.csv')
     generate_image(owner, repo, '../output/readme_normalized_metrics.csv', )

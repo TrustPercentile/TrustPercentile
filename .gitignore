@@ -1,4 +1,6 @@
 data/
 docs/
 output/
+images/
 venv/
+config.json

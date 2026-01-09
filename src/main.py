@@ -8,10 +8,13 @@ import numpy as np
 
 
 from generate_detailed_markdown_file import get_detailed_markdown_file
-from generate_trustPercentile_readme_file import get_trustPercentile_readme_file
+from generate_social_trust_readme_file import get_social_trust_readme_file
 from get_raw_metrics import get_raw_metrics
 from scrape import scrape
 
+
+BASE_DIR = os.path.dirname(__file__)
+os.chdir(BASE_DIR)
 
 owner = ""
 repo = ""
@@ -26,7 +29,13 @@ if __name__ == "__main__":
 
     # 01
     # scrape date for later calculate
-    scrape(owner, repo, token)
+    data_dir = f"../data/{owner}_{repo}"
+    repo_json_path = os.path.join(data_dir, "repo.json")
+    has_cached_data = os.path.isdir(data_dir) and os.listdir(data_dir)
+    if os.path.exists(repo_json_path) or has_cached_data:
+        print("Using existing data, skipping scrape.")
+    else:
+        scrape(owner, repo, token)
 
     # 02
     # calculate raw metrics and saved to '../output'
@@ -39,5 +48,5 @@ if __name__ == "__main__":
     get_detailed_markdown_file(owner, repo)
 
     # 04
-    # use metrics to generate README.md (TrustPercentile)
-    get_trustPercentile_readme_file(owner, repo)
+    # use metrics to generate README.md (SocialTrust)
+    get_social_trust_readme_file(owner, repo)
